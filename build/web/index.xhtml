@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Demo JSF</title>
+</h:head>
+    <h:body>
+        <center>
+	<h2>CRUD WITH USERS</h2>
+	<h:form style="margin-bottom: 30px;">
+            
+            Fullname: <h:inputText value="#{userss.fullname}"></h:inputText>
+            Email: <h:inputText value="#{userss.email}"></h:inputText>
+            Phone: <h:inputText value="#{userss.phone}"></h:inputText>
+            Username: <h:inputText value="#{userss.username}"></h:inputText>
+            Password: <h:inputSecret value="#{userss.password}"></h:inputSecret>
+            
+            <h:commandButton value="Create" action="#{userss.createOne()}"></h:commandButton>
+                
+        </h:form>
+        
+        <h:form>   
+        <h:dataTable value="#{userss.getAll()}" var="user" border="1" first="0">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{user.id}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fullname</f:facet>
+                <h:outputText value="#{user.fullname}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Phone</f:facet>
+                <h:outputText value="#{user.phone}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Username</f:facet>
+                <h:outputText value="#{user.username}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Password</f:facet>
+                <h:outputText value="#{user.password}"></h:outputText>
+            </h:column>
+            
+            <h:column>
+            <f:facet name="header">Edit</f:facet>    
+            <h:commandButton value="Edit" action="#{user.editUser()}">
+                <f:param name="username" value="#{user.username}" />
+            </h:commandButton>
+            </h:column>
+            
+            
+            <h:column>
+            <f:facet name="header">Delete</f:facet>    
+            <h:commandButton value="Delete" action="#{user.delete(user.username)}">
+                <f:param name="action" value="#{user.username}" />
+            </h:commandButton>  
+            </h:column>
+            
+        </h:dataTable>
+        </h:form>
+        
+        
+            
+        </center>
+        
+</h:body>
+</html>
